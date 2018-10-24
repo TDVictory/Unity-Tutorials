@@ -7,13 +7,13 @@ Unity官方教程学习（[原教程链接](https://unity3d.com/cn/learn/tutoria
     - Unity能做什么
     - Unity怎么入门
 - Unity视图
-    - **Scene** 视图
-    - **Game** 视图
-    - **Hierarchy** 窗口
-    - **Project** 窗口
-    - **Inspector** 窗口
-    - **Build** 和 **Player Settings** 窗口
-    - **Profiler** 窗口
+    - Scene 视图
+    - Game 视图
+    - Hierarchy 窗口
+    - Project 窗口
+    - Inspector 窗口
+    - Build 和 Player Settings 窗口
+    - Profiler 窗口
 - 基础概念
     - Game Objects（物体） and Components（组件）
     - Prefabs（预制体）
