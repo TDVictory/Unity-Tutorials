@@ -4,10 +4,9 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnableComponents : MonoBehaviour
+public class Test : MonoBehaviour
 {
-    private Light myLight;
-    
+    public Light myLight;    
     
     void Start ()
     {
