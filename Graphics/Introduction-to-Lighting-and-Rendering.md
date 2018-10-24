@@ -11,14 +11,14 @@
 
 - [高动态光照渲染（High Dynamic Range，HDR）](/Graphics/High-Dynamic-Range.md)
 
-- Reflections
+- [反射（Reflections）](/Graphics/Reflections.md)
 
-- Ambient Lighting
+- [环境光（Ambient Lighting）](/Graphics/Ambient-Lighting.md)
 
-- Light Types
+- [光的类型（Light Types）](/Graphics/Light-Types.md)
 
-- Emissive Materials
+- [自发光材质（Emissive Materials）](/Graphics/Emissive-Materials.md)
 
-- Light Probes
+- [光照探针（Light Probes）](/Graphics/Light-Probes.md)
 
 [返回主页](/README.md)
