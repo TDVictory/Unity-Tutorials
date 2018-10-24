@@ -6,6 +6,11 @@ Unity官方教程学习（[原教程链接](https://unity3d.com/cn/learn/tutoria
     - Unity是什么
     - Unity能做什么
     - Unity怎么入门
+- 基础概念
+    - Game Objects（物体） and Components（组件）
+    - Prefabs（预制体）
+    - Tags（标签）
+    - Layers（层）
 - 脚本编写（Scripting）
     - [初学者脚本入门（Beginner Gameplay Scripting）](/Scripting/Beginner-Gameplay-Scripting.md)
 - 用户界面（User Interface，UI）
