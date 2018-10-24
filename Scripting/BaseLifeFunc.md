@@ -49,4 +49,12 @@ public class Test : MonoBehaviour {
         Debug.Log("Update time :" + Time.deltaTime);
     }   
 ```
+
+对照Unity的生命周期图思考一下每个函数是用来做什么的？
+
 ![](/Image/Unity生命周期图.jpg)
+
+[返回上一级](/Scripting/Beginner-Gameplay-Scripting.md)
+
+[返回主页](/README.md)
+
