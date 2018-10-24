@@ -4,12 +4,12 @@
 
 - [基础生命周期函数](/Scripting/BaseLifeFunc.md)
 - [物体的激活（Activating GameObjects）](/Scripting/Activating-GameObjects.md)
-- [生成与销毁（Instantiate and Destroy）](/Scripting/Instantiate-and-Destroy.md)
 - [组件的获取（GetComponent）](/Scripting/GetComponent.md)
 - [组件的启用（Enabling Components）](/Scripting/Enabling-Components.md)
 - [平移与旋转（Translate and Rotate）](/Scripting/Translate-and-Rotate.md)
 - [朝向（Look At）](/Scripting/Look-At.md)
 - [按键响应（Key Press Response）](/Scripting/Key-Press-Response.md)
+- [生成与销毁（Instantiate and Destroy）](/Scripting/Instantiate-and-Destroy.md)
 - [延迟(Invoke)](/Scripting/Invoke.md)
 
 [返回主页](/README.md)
