@@ -3,12 +3,12 @@
 在本部分内我们将讲解在Unity我们最主要操作的部件——GameObject，Transform，按键响应，以及一些常用的操作函数。
 
 - [基础生命周期函数](/Scripting/BaseLifeFunc.md)
+- [按键响应（Key Press Response）](/Scripting/Key-Press-Response.md)
 - [物体的激活（Activating GameObjects）](/Scripting/Activating-GameObjects.md)
 - [组件的获取（GetComponent）](/Scripting/GetComponent.md)
 - [组件的启用（Enabling Components）](/Scripting/Enabling-Components.md)
 - [平移与旋转（Translate and Rotate）](/Scripting/Translate-and-Rotate.md)
 - [朝向（Look At）](/Scripting/Look-At.md)
-- [按键响应（Key Press Response）](/Scripting/Key-Press-Response.md)
 - [生成与销毁（Instantiate and Destroy）](/Scripting/Instantiate-and-Destroy.md)
 - [延迟(Invoke)](/Scripting/Invoke.md)
 
