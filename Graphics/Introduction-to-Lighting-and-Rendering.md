@@ -1,15 +1,15 @@
-﻿# 光照与渲染
+# 光照与渲染
 - [简介](/Graphics/Introduction.md)
 
-- Choosing a Lighting Technique
+- [选择一个光照方法（Choosing a Lighting Technique）](/Graphics/Choosing-a-Lighting-Technique.md)
 
-- The Precompute Process
+- [预处理（The Precompute Process）](/Graphics/The-Precompute-Process.md)
 
-- Choosing a Rendering Path
+- [选择一个渲染路径（Choosing a Rendering Path）](/Graphics/Choosing-a-Rendering-Path.md)
 
-- Choosing a Color Space
+- [选择一个颜色空间（Choosing a Color Space）](/Graphics/Choosing-a-Color-Space.md)
 
-- High Dynamic Range (HDR)
+- [高动态光照渲染（High Dynamic Range，HDR）](/Graphics/High-Dynamic-Range.md)
 
 - Reflections
 
