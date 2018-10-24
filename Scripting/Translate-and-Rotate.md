@@ -4,7 +4,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class TransformFunctions : MonoBehaviour
+public class Test : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public float turnSpeed = 50f;
