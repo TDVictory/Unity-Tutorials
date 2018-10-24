@@ -11,6 +11,6 @@
 - [平移与旋转（Translate and Rotate）](/Scripting/Beginner/Translate-and-Rotate.md)
 - [朝向（Look At）](/Scripting/Beginner/Look-At.md)
 - [生成与销毁（Instantiate and Destroy）](/Scripting/Beginner/Instantiate-and-Destroy.md)
-- [延迟(Invoke)](/Scripting/Beginner/Invoke.md)
+- [延时调用(Invoke)](/Scripting/Beginner/Invoke.md)
 
 [返回主页](/README.md)
