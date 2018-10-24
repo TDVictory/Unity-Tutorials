@@ -31,7 +31,9 @@ public class CheckState : MonoBehaviour
     }
 }
 ```
+activeSelf 检测物体本身是否处于激活状态
 
+activeInHierarchy 检测物体在场景内是否处于激活状态
 
 [返回上一级](/Scripting/Beginner-Gameplay-Scripting.md)
 
