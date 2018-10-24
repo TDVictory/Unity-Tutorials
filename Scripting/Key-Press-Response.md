@@ -4,9 +4,6 @@
 GetKey、GetButton其后缀为Down则为按下瞬间为真，后缀为Up则为弹起瞬间为真，无后缀则按下期间均为真.
 
 GetAxis其后缀为Raw时只会返回-1，0，1值，无后缀则会对输出值进行一个平滑处理
-
-通过
-
 ## GetKey
 ```
 using UnityEngine;
