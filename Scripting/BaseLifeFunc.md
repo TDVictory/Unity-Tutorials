@@ -1,5 +1,5 @@
 # 基础生命周期函数
-在Unity内创建C#脚本，自动生成的初始脚本中会自动继承MonoBehavior类，并提供给我们两个函数方法Start和Update。
+在Unity内创建C#脚本，自动生成的初始脚本中会自动继承MonoBehavior类，并提供给两个函数方法Start和Update。
 ```
 using System.Collections;
 using System.Collections.Generic;
@@ -18,26 +18,24 @@ public class Test : MonoBehaviour {
 	}
 }
 ```
-在开始讲解前，我们首先在按照如下编写脚本并保存。
+## Start与Update
 ```
-	void Start () {
+void Start () {
         Debug.Log("Start");
-	}
+}
 	
-	void Update () {
+void Update () {
         Debug.Log("Update");
-    }
+}
 ```
-然后将我们将该脚本挂载在场景内随意物体上，运行并观察运行结果。
-再添加Awake方法，运行并观察运行结果。
+## Awake
 ```
     void Awake()
     {
         Debug.Log("Awake");
     }
 ```
-最后我们再修改一下Update内的内容，
-并添加FixUpdate方法，运行并观察运行结果。
+## FixUpdate
 ```
     void FixedUpdate ()
     {
@@ -50,7 +48,7 @@ public class Test : MonoBehaviour {
     }   
 ```
 
-对照Unity的生命周期图思考一下每个函数是用来做什么的？
+## Unity的生命周期图
 
 ![](/Image/Unity生命周期图.jpg)
 
