@@ -16,15 +16,15 @@ public class UsingOtherComponents : MonoBehaviour
     void Awake ()
     {
         MyScript = GetComponent<MyScript>();
-        AnotherScript = otherGameObject.GetComponent<AnotherScript>();
+        anotherScript = otherGameObject.GetComponent<AnotherScript>();
     }
     
     
     void Start ()
     {
         Debug.Log("My score is " + MyScript.playerScore);
-        Debug.Log("Other player's score is " + AnotherScript.playerScore);
-        AnotherScript.ShowScore();
+        Debug.Log("Other player's score is " + anotherScript.playerScore);
+        anotherScript.ShowScore();
     }
 }
 ```
