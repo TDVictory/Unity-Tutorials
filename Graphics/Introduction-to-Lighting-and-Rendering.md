@@ -5,7 +5,7 @@
 
 - [预处理（The Precompute Process）](/Graphics/The-Precompute-Process.md)
 
-- [选择一个渲染路径（Choosing a Rendering Path）](/Graphics/Choosing-a-Rendering-Path.md)
+- [选择渲染路径（Choosing a Rendering Path）](/Graphics/Choosing-a-Rendering-Path.md)
 
 - [选择一个颜色空间（Choosing a Color Space）](/Graphics/Choosing-a-Color-Space.md)
 
