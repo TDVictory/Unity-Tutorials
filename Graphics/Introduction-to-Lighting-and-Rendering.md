@@ -1,7 +1,7 @@
 # 光照与渲染
 - [简介](/Graphics/Introduction.md)
 
-- [选择一个光照方法（Choosing a Lighting Technique）](/Graphics/Choosing-a-Lighting-Technique.md)
+- [选择照明技术（Choosing a Lighting Technique）](/Graphics/Choosing-a-Lighting-Technique.md)
 
 - [预处理（The Precompute Process）](/Graphics/The-Precompute-Process.md)
 
