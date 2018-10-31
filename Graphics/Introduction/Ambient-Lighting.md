@@ -6,9 +6,11 @@
 如果不使用Unity的光照预计算（precomputed lighting）解决方案，环境光将不会被遮挡，因此在物理上不准确。但是，如果场景中启用了烘培全局光照（Baked GI）或实时预计算全局光照（Precomputed Realtime GI），则此“‘skylight”将被场景中的对象阻挡，从而产生更逼真的效果。
 
 ![](/Image/Graphics/Introduction/ambientlightab_0.png)
+
 *没有任何光线的相同场景（左）和仅环境光（右）。请注意当对环境光强度进行更改时，可见Skybox如何不会更改。*
 
 ![](/Image/Graphics/Introduction/ambientlightc_0.png)
+
 *现在通过将对象标记为静态来使用预计算实时GI。注意在表面之间的接触区域中光线现在是如何被遮挡的。*
 
 使用环境光的一个显着优点是渲染成本低廉，因此特别适用于可能需要最小化场景中灯光数量的移动应用。
