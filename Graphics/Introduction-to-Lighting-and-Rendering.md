@@ -17,7 +17,7 @@
 
 - [光照类型（Light Types）](/Graphics/Light-Types.md)
 
-- [自发光材质（Emissive Materials）](/Graphics/Emissive-Materials.md)
+- [发光材质（Emissive Materials）](/Graphics/Emissive-Materials.md)
 
 - [光照探针（Light Probes）](/Graphics/Light-Probes.md)
 
