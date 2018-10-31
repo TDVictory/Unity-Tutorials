@@ -24,6 +24,7 @@ Unity官方教程学习（[原教程链接](https://unity3d.com/cn/learn/tutoria
     - [中高级脚本介绍（Intermediate Gameplay Scripting）](/Scripting/Intermediate-Gameplay-Scripting.md)
 - 图形学（Graphics）
     - [光照与渲染（Introduction to Lighting and Rendering）](/Graphics/Introduction-to-Lighting-and-Rendering.md)
+    - [实时预计算的全局光照（Precomputed Realtime GI，Realtime Global Illumination)](/Graphics/Precomputed-Realtime-GI.md)
 - 用户界面（User Interface，UI）
     - [UI组件（UI Components）](/UI/UI-Components.md)
 - 物理系统（Physics）
