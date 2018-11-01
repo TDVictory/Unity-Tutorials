@@ -50,3 +50,6 @@ Unity使用以下解释读取切线空间法线贴图：红色通道X +为“Rig
 ![](/Image/Graphics/Creating-Believable-Visuals/staying-on-track-in-making-believable-visual-in-unity-copy-6.jpg)
 
 要验证法线贴图方向，请创建一个带凹面斜面的简单平面（上例中的中间图片）并将其烘焙到平面。然后将烘焙的法线贴图分配到Unity中具有可识别光方向的平面中，并查看是否有任何轴被反转。有关正确的轴设置，请参阅Digital Content Creation软件手册。
+
+[返回上一级](/Graphics/Creating-Believable-Visuals.md)
+[返回主页](/README.md)
