@@ -36,4 +36,10 @@ public class LevelScriptEditor : Editor
 ```
 首先我们引用了UnityEditor命名空间，并通过CustomEditor属性通知Unity将要编辑LevelScript的界面。同时该类必须从Editor派生。
 
-只要Unity在Inspector中显示编辑器，就会执行OnInspectorGUI中的代码。你可以在这里放置任何GUI代码 - 它就像OnGUI对游戏一样，但是在Inspector中运行。编辑器定义了可用于访问被检查对象的目标属性。这是我们的自定义检查器的样子：
+只要Unity在Inspector中显示编辑器，就会执行OnInspectorGUI中的代码。你可以在这里放置任何GUI代码 - 它就像OnGUI对游戏一样，但是在Inspector中运行。编辑器定义了可用于访问被检查对象的目标属性。
+
+我们使用了EditorGUILayout类中的IntField与LabelField来显示参数，由于experience参数是Public可修改的，所以我们对其进行了赋值操作。
+
+[返回上一级](/Scripting/Editor.md)
+
+[返回主页](/README.md)
