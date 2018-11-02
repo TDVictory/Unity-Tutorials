@@ -4,7 +4,7 @@
 
 2. [DrawDefaultInspector功能(The DrawDefaultInspector Function)](/Scripting/Editor/The-DrawDefaultInspector-Function.md)
 
-3. [为自定义视图添加按键(Adding Buttons to a Custom Inspector)](/Scripting/Editor/Building-a-Custom-Inspector.md)
+3. [为自定义视图添加按键(Adding Buttons to a Custom Inspector)](/Scripting/Editor/Adding-Buttons-to-a-Custom-Inspector.md)
 
 4. [Unity编辑器扩展——菜单物件(Unity Editor Extensions – Menu Items)](/Scripting/Editor/Building-a-Custom-Inspector.md)
 
