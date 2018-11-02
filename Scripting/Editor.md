@@ -2,7 +2,7 @@
 
 1. [搭建一个自定义视图(Building a Custom Inspector)](/Scripting/Editor/Building-a-Custom-Inspector.md)
 
-2. [DrawDefaultInspector功能(The DrawDefaultInspector Function)](/Scripting/Editor/Building-a-Custom-Inspector.md)
+2. [DrawDefaultInspector功能(The DrawDefaultInspector Function)](/Scripting/Editor/The-DrawDefaultInspector-Function.md)
 
 3. [为自定义视图添加按键(Adding Buttons to a Custom Inspector)](/Scripting/Editor/Building-a-Custom-Inspector.md)
 
