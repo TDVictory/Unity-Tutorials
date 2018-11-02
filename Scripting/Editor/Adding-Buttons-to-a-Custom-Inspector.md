@@ -39,6 +39,7 @@ public class ObjectBuilderEditor : Editor
     }
 }
 ```
+GUILayout.Button绘制按钮。
 
 [返回上一级](/Scripting/Editor.md)
 
