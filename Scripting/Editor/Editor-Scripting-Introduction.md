@@ -100,6 +100,23 @@ public class Launcher : MonoBehaviour
 }
 ```
 
+从这个例子说开来去，我们需要编写一个Editor类来扩展Launcher组件的功能。这个类具有CustomEditor属性用来告诉Unity这个自定义的编辑器将运用于哪个组件。当场景被渲染时，OnSceneGUI方法被调用，通过该方法允许我们在Scene视图中绘制一些小物体。正因为它是一个编辑器类，**它必须被放置在你项目内某个名字为“Editor”的文件夹内**。
+
+```
+using UnityEditor;
+
+[CustomEditor(typeof(Launcher))]
+public class LauncherEditor : Editor
+{
+    void OnSceneGUI()
+    {
+        var launcher = target as Launcher;
+    }
+}
+```
+
+
+
 
 [返回上一级](/Scripting/Editor.md)
 
