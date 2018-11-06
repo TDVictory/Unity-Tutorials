@@ -21,7 +21,7 @@ public class MenuItems
 ```
 这可以创建一个名为Tools的编辑器窗口，并在其下设置一个名为Clear PlayerPrefs的菜单项。
 
-![](/Image/Scripting/Editor/MenuItems01.jpg)
+![](/Image/Scripting/Editor/MenuItems01.png)
 
 在已有的菜单下添加新的菜单选项也是可行的（例如在Window菜单下）， 如果需要的话，通过在菜单下创建多级子菜单对于组织结构有着很大的帮助。
 
@@ -48,7 +48,7 @@ public class MenuItemsExample
 ```
 结果如下
 
-![](/Image/Scripting/Editor/MenuItems02.jpg)
+![](/Image/Scripting/Editor/MenuItems02.png)
 
 ## Hotkeys（热键）
 为了帮助高级用户以及键盘能手更快地工作，新的菜单项可以分配热键——快捷键组合将可以自动执行它们。
@@ -88,7 +88,7 @@ private static void NewOptionWithHotkey()
 ```
 带有热键的菜单项将会展示用于启动的快捷键。举个例子来说，上面代码在菜单上的效果如下：
 
-![](/Image/Scripting/Editor/MenuItems03.jpg)
+![](/Image/Scripting/Editor/MenuItems03.png)
 
 注意：覆写热键是不会生效的，使用相同的热键来定义复数菜单项的结果是只有其中一种会被按键所响应。
 
@@ -128,15 +128,15 @@ private static void NewOpenForRigidBody()
 ```
 此代码段的结果是以下新菜单选项：
 
-![](/Image/Scripting/Editor/MenuItems04.jpg)
+![](/Image/Scripting/Editor/MenuItems04.png)
 
 *Assets(project view右键)菜单*
 
-![](/Image/Scripting/Editor/MenuItems05.jpg)
+![](/Image/Scripting/Editor/MenuItems05.png)
 
 *Assets下的“CREATE”按键菜单*
 
-![](/Image/Scripting/Editor/MenuItems06.jpg)
+![](/Image/Scripting/Editor/MenuItems06.png)
 
 *组件内的菜单选项*
 
@@ -166,7 +166,7 @@ private static bool NewMenuOptionValidation()
 
 当在project view中右击任意不是纹理（Texture）的物件时，该菜单项将不会激活。
 
-![](/Image/Scripting/Editor/MenuItems07.jpg)
+![](/Image/Scripting/Editor/MenuItems07.png)
 
 ## Controlling Order with Priority（通过优先级控制顺序）
 优先级时一个可以被指定给菜单项的数字（通过菜单项属性赋值），以此来控制在根目录上展示的顺序。
@@ -202,7 +202,7 @@ private static void NewMenuOption5()
 
 以上的代码示例结果是菜单项分为两组，依据它们所分配的优先级。
 
-![](/Image/Scripting/Editor/MenuItems08.jpg)
+![](/Image/Scripting/Editor/MenuItems08.png)
 
 如果需要在已有的Unity菜单下添加并整理菜单项，将无法避免一些“猜测工作”，因为大多时内置的菜单项都使用了优先级。另一个选项是使用像Reflector的工具，并且查看Unity的构建编辑器窗口的源代码（像UnityEditor.CreateBuildInWindows）。
 
@@ -243,3 +243,9 @@ public class Something : EditorWindow
 
 ### ContextMenu
 这条属性将被
+
+
+
+[返回上一级](/Scripting/Editor.md)
+
+[返回主页](/README.md)
