@@ -8,7 +8,7 @@
 
 4. [Unity编辑器扩展——菜单项(Unity Editor Extensions – Menu Items)](/Scripting/Editor/Menu-Extensions.md)
 
-5. [编辑器脚本介绍(An Introduction to Editor Scripting)](/Scripting/Editor/Building-a-Custom-Inspector.md)
+5. [编辑器脚本介绍(An Introduction to Editor Scripting)](/Scripting/Editor/Editor-Scripting-Introduction.md)
 
 6. [(Creating a Spline Tool)](/Scripting/Editor/Building-a-Custom-Inspector.md)
 
