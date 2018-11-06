@@ -171,7 +171,7 @@ private static bool NewMenuOptionValidation()
 ## Controlling Order with Priority（通过优先级控制顺序）
 优先级时一个可以被指定给菜单项的数字（通过菜单项属性赋值），以此来控制在根目录上展示的顺序。
 
-菜单项以分配的优先级数值来进行以50为分界线的分组。
+菜单项以分配的优先级数值来进行以50为分界线的分组。如果没有设置优先级，则按照顺序放置在根目录的最下端。
 
 ```
 [MenuItem("NewMenu/Option1", false, 1)]
@@ -244,8 +244,50 @@ public class Something : EditorWindow
 ### ContextMenu（快捷菜单）
 这条属性将允许用户定义快捷菜单项。这种模式定义和使用“CONTEXT/…”路径的菜单项属性一样。
 
-二者的不同点在于
+二者的不同点在于，你对一个给定的组件定义了默认的快捷菜单，然而如果使用了菜单项属性，你将“扩展”其他的组件菜单（举个例子来说，默认组件时引擎的一部分）
 
+示例——一个开放了快捷菜单来清除它本身数据的组件：
+```
+public class NameBehaviour : MonoBehaviour
+{
+    public string Name;
+ 
+    [ContextMenu("Reset Name")]
+    void ResetName()
+    {
+        Name = string.Empty;
+    }
+}
+```
+原文中使用private static void ResetName()，经2017版本测试报错，查阅官方API后发现已经不需要作为静态变量。通过该设置能右键唤出快捷菜单，点击后清空Name框。
+
+### ContextMenuItem（快捷菜单项）
+此属性将添加到组件（MonoBehaviour）类的字段中，以允许以更精细的分类添加快捷菜单。虽然上面显示的ContextMenu属性在组件级别添加了快捷菜单，但使用此属性标记字段后，会将右键单击菜单添加到各个公共字段。
+
+由于此属性被添加到字段而不是方法，因此它接受2个参数：菜单项的显示名称和选择菜单项时要调用的方法名称（实例方法）。
+
+示例——添加一个方法，将组件的字段随机初始化为某个状态：
+```
+public class NameBehaviour : MonoBehaviour
+{
+    [ContextMenuItem("Randomize Name", "Randomize")]
+    public string Name;
+ 
+    private void Randomize()
+    {
+        Name = "Some Random Name";
+    }
+}
+```
+代码结果：在你右击组件的Name区域时会产生一个快捷菜单。
+
+![](/Image/Scripting/Editor/MenuItems09.png)
+
+## Wrap Up（整合起来）
+
+如本文所示，使用自定义菜单扩展Unity编辑器非常简单。
+
+建议为各种规模的团队构建常用功能并将其从编辑器中提供，这可以节省大量时间。
 
 
 [返回上一级](/Scripting/Editor.md)
