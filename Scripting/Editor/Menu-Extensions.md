@@ -221,7 +221,7 @@ private static void NewMenuOption(MenuCommand menuCommand)
     var rigid = menuCommand.context as Rigidbody;
 }
 ```
-我感觉官方这个讲的不明白，于是去搜了一下官方的API，文档描述的更详细，代码如下：
+我感觉教程这里讲的不够明白，于是去搜了一下官方的API，文档描述的更详细，代码如下：
 ```
 // Add context menu named "Do Something" to context menu
 using UnityEngine;
@@ -239,10 +239,12 @@ public class Something : EditorWindow
     }
 }
 ```
-我们可以看到通过MenuCommand.context获取并强转成Rigidbody后，就可以通过该按键修改组件的参数。
+我们可以看到通过MenuCommand.context获取并强转成Rigidbody后，就可以通过该按键修改对应组件的参数。
 
-### ContextMenu
-这条属性将被
+### ContextMenu（快捷菜单）
+这条属性将允许用户定义快捷菜单项。这种模式定义和使用“CONTEXT/…”路径的菜单项属性一样。
+
+二者的不同点在于
 
 
 
