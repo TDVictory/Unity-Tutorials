@@ -115,6 +115,43 @@ public class LauncherEditor : Editor
 }
 ```
 
+让我们添加OnSceneGUI方法，以便我们可以有一个小部件，来允许我们显示和调整场景视图内的偏移位置（Launcher脚本中的offset）。因为偏移是相对于父变换存储的，所以我们需要使用Transform.InverseTransformPoint和Transform.TransformPoint方法将偏移位置转换为世界空间以供Handles.PositionHandle方法使用，并返回到本地空间来存储偏移字段。
+
+```
+using UnityEditor;
+
+[CustomEditor(typeof(Launcher))]
+public class LauncherEditor : Editor
+{
+    void OnSceneGUI()
+    {
+        var launcher = target as Launcher;
+        var transform = launcher.transform;
+        launcher.offset = transform.InverseTransformPoint(
+            Handles.PositionHandle(
+                transform.TransformPoint(launcher.offset), 
+                transform.rotation));
+    }
+}
+```
+
+我们也同样创建一个自定义的Projectile编辑器类。让我们先给Projectile类添加一个damageRadius字段，这将被用于计算其他游戏物体受到抛射器的影响。
+
+```
+[RequireComponent(typeof(Rigidbody))]
+public class Projectile : MonoBehaviour
+{
+    [HideInInspector] new public Rigidbody rigidbody;
+    public float damageRadius = 1;
+    
+    void Reset()
+    {
+        rigidbody = GetComponent<Rigidbody>();
+    }
+}
+```
+
+我们可能想要在damageRadius字段中添加一个简单的Range属性，但是我们可以通过在场景视图中可视化这个字段来做得更好。我们为Projectile组件创建了另一个Editor类，并使用Handles.RadiusHandle可视化该字段，并允许在场景视图中对其进行调整。
 
 
 
