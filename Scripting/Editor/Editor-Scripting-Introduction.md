@@ -153,6 +153,60 @@ public class Projectile : MonoBehaviour
 
 我们可能想要在damageRadius字段中添加一个简单的Range属性，但是我们可以通过在场景视图中可视化这个字段来做得更好。我们为Projectile组件创建了另一个Editor类，并使用Handles.RadiusHandle可视化该字段，并允许在场景视图中对其进行调整。
 
+```
+using UnityEditor;
+
+[CustomEditor(typeof(Projectile))]
+public class ProjectileEditor : Editor
+{
+    void OnSceneGUI()
+    {
+        var projectile = target as Projectile;
+        var transform = projectile.transform;
+        projectile.damageRadius = Handles.RadiusHandle(
+            transform.rotation, 
+            transform.position, 
+            projectile.damageRadius);
+    }
+}
+
+```
+
+我们还应该添加一个Gizmo，这样我们就可以在没有可渲染几何体的情况下在场景视图中看到它。这里我们使用DrawGizmo属性来指定一个方法，用于绘制Projectile类的Gizmo。这也可以通过在Projectile类本身中实现OnDrawGizmos和OnDrawGizmosSelected来完成，但是在可能的情况下将编辑器功能与游戏功能分开是更好的做法，因此我们使用DrawGizmo属性。
+
+```
+using UnityEditor;
+
+[CustomEditor(typeof(Projectile))]
+public class ProjectileEditor : Editor
+{
+    [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected)]
+    static void DrawGizmosSelected(Projectile projectile, GizmoType gizmoType)
+    {
+        Gizmos.DrawSphere(projectile.transform.position, 0.125f);
+    }
+    
+    void OnSceneGUI()
+    {
+        var projectile = target as Projectile;
+        var transform = projectile.transform;
+        projectile.damageRadius = Handles.RadiusHandle(
+            transform.rotation, 
+            transform.position, 
+            projectile.damageRadius);
+    }
+}
+```
+
+## Widgets in the Scene View（场景视图内的窗口小部件）
+![](/Image/Scripting/Editor/an-introduction-to-editor-scripting-2.png)
+
+我们也可以在OnSceneGUI中使用Editor IMGUI方法，以此来创建任意种类的场景视图编辑器控制。我们将要使用一个按键中在场景视图中开放Launcher组件的Fire方法。
+
+
+
+
+
 
 
 [返回上一级](/Scripting/Editor.md)
