@@ -201,14 +201,158 @@ public class ProjectileEditor : Editor
 ## Widgets in the Scene View（场景视图内的窗口小部件）
 ![](/Image/Scripting/Editor/an-introduction-to-editor-scripting-2.png)
 
-我们也可以在OnSceneGUI中使用Editor IMGUI方法，以此来创建任意种类的场景视图编辑器控制。我们将要使用一个按键中在场景视图中开放Launcher组件的Fire方法。
+我们也可以在OnSceneGUI中使用Editor IMGUI方法，以此来创建任意种类的场景视图编辑器控制。我们将要使用一个按键中在场景视图中开放Launcher组件的Fire方法。我们计算出屏幕空间上偏右的矩形空间对应的世界坐标系，将在该处绘制GUI。当然，我们想要在，只有在游戏运行时，而不是编辑模式下调用Fire方法。因此我们将Fire方法的响应包装进**EditorGUI.DisabledGroupScope**之中，这代表了按钮只有在运行模式下才会被激活。
+
+```
+using UnityEditor;
+
+[CustomEditor(typeof(Launcher))]
+public class LauncherEditor : Editor
+{
+    void OnSceneGUI()
+    {
+        var launcher = target as Launcher;
+        var transform = launcher.transform;
+        launcher.offset = transform.InverseTransformPoint(
+            Handles.PositionHandle(
+                transform.TransformPoint(launcher.offset), 
+                transform.rotation));
+        Handles.BeginGUI();
+        var rectMin = Camera.current.WorldToScreenPoint(
+            launcher.transform.position + 
+            launcher.offset);
+        var rect = new Rect();
+        rect.xMin = rectMin.x;
+        rect.yMin = SceneView.currentDrawingSceneView.position.height - 
+            rectMin.y;
+        rect.width = 64;
+        rect.height = 18;
+        GUILayout.BeginArea(rect);
+        using (new EditorGUI.DisabledGroupScope(!Application.isPlaying))
+        {
+            if (GUILayout.Button("Fire"))
+                launcher.Fire();
+        }
+        GUILayout.EndArea();
+        Handles.EndGUI();
+    }
+}
+```
+
+游戏设计中的物理学很难调试，所以让我们为设计师添加一个助手，它可以显示飞行时间1秒后射弹的位置。我们需要弹丸的质量来计算这个位置，因此我们在尝试计算之前检查刚体字段是否为空。为了清晰起见，我们还从启动器对象到偏移位置绘制了一条虚线（使用Handles.DrawDottedLine），让设计人员知道此位置句柄正在修改偏移字段，而不是变换位置。我们还使用Handles.Label为偏移句柄添加标签。
+
+这是使用具有DrawGizmo属性的方法完成的，方法与ProjectileEditor相同。我们还添加了一个Undo.RecordObject调用，在EditorGUI.ChangeCheckScope的帮助下，我们可以在更改偏移时记录撤消操作。（如果您之前没有看过using语句，可以在MSDN上阅读它。）
+
+![](/Image/Scripting/Editor/an-introduction-to-editor-scripting-3.png)
+
+```using UnityEditor;
+
+[CustomEditor(typeof(Launcher))]
+public class LauncherEditor : Editor
+{
+    [DrawGizmo(GizmoType.Pickable | GizmoType.Selected)]
+    static void DrawGizmosSelected(Launcher launcher, GizmoType gizmoType)
+    {
+        var offsetPosition = launcher.transform.position + launcher.offset;
+        Handles.DrawDottedLine(launcher.transform.position, offsetPosition, 3);
+        Handles.Label(offsetPosition, "Offset");
+        if (launcher.projectile != null)
+        {
+            var endPosition = offsetPosition + 
+                (launcher.transform.forward * 
+                launcher.velocity / 
+                launcher.projectile.mass);
+            using (new Handles.DrawingScope(Color.yellow))
+            {
+                Handles.DrawDottedLine(offsetPosition, endPosition, 3);
+                Gizmos.DrawWireSphere(endPosition, 0.125f);
+                Handles.Label(endPosition, "Estimated Position");
+            }
+        }
+    }
+
+    void OnSceneGUI()
+    {
+        var launcher = target as Launcher;
+        var transform = launcher.transform;
+
+            using (var cc = new EditorGUI.ChangeCheckScope())
+            {
+               var newOffset = transform.InverseTransformPoint(
+
+               Handles.PositionHandle(
+                   transform.TransformPoint(launcher.offset),
+                   transform.rotation));
+
+               if(cc.changed)
+               {
+                   Undo.RecordObject(launcher, "Offset Change");
+                   launcher.offset = newOffset;
+               }
+           }
+
+        Handles.BeginGUI();
+        var rectMin = Camera.current.WorldToScreenPoint(
+            launcher.transform.position + 
+            launcher.offset);
+        var rect = new Rect();
+        rect.xMin = rectMin.x;
+        rect.yMin = SceneView.currentDrawingSceneView.position.height - 
+            rectMin.y;
+        rect.width = 64;
+        rect.height = 18;
+        GUILayout.BeginArea(rect);
+        using (new EditorGUI.DisabledGroupScope(!Application.isPlaying))
+        {
+            if (GUILayout.Button("Fire"))
+                launcher.Fire();
+        }
+        GUILayout.EndArea();
+        Handles.EndGUI();
+    }
+}
+}
+```
+
+![](/Image/Scripting/Editor/an-introduction-to-editor-scripting-4.png)
 
 
+如果你在编辑器中进行尝试，你将会发现位置估计并不准确。让我们考虑重力并改变计算，通过一秒的飞行时间来轨迹绘制Handles.DrawAAPolyLine和Gizmos.DrawWireSphere的弯曲路径。如果我们使用Handles.DrawingScope来更改小部件的颜色，我们不需要担心在方法完成时将其设置回先前的颜色。
 
+```
+[DrawGizmo(GizmoType.Pickable | GizmoType.Selected)]
+static void DrawGizmosSelected(Launcher launcher, GizmoType gizmoType)
+{
+{
+    var offsetPosition = launcher.transform.TransformPoint(launcher.offset);
+    Handles.DrawDottedLine(launcher.transform.position, offsetPosition, 3);
+    Handles.Label(offsetPosition, "Offset");
+    if (launcher.projectile != null)
+    {
+        var positions = new List<Vector3>();
+        var velocity = launcher.transform.forward * 
+            launcher.velocity / 
+            launcher.projectile.mass;
+        var position = offsetPosition;
+        var physicsStep = 0.1f;
+        for (var i = 0f; i <= 1f; i += physicsStep)
+        {
+            positions.Add(position);
+            position += velocity * physicsStep;
+            velocity += Physics.gravity * physicsStep;
+        }
+        using (new Handles.DrawingScope(Color.yellow))
+        {
+            Handles.DrawAAPolyLine(positions.ToArray());
+            Gizmos.DrawWireSphere(positions[positions.Count - 1], 0.125f);
+            Handles.Label(positions[positions.Count - 1], "Estimated Position (1 sec)");
+      }
+    }
+}
+}
+```
 
-
-
-
+  
 
 [返回上一级](/Scripting/Editor.md)
 
