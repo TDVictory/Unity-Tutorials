@@ -10,7 +10,7 @@
 
 5. [编辑器脚本介绍(An Introduction to Editor Scripting)](/Scripting/Editor/Editor-Scripting-Introduction.md)
 
-6. [(Creating a Spline Tool)](/Scripting/Editor/Building-a-Custom-Inspector.md)
+6. [创建样条曲线工具(Creating a Spline Tool)](/Scripting/Editor/Creating-a-Spline-Tool.md)
 
 7. [(Getting Started with IK)](/Scripting/Editor/Building-a-Custom-Inspector.md)
 
