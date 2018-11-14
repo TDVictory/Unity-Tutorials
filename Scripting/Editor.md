@@ -12,6 +12,6 @@
 
 6. [创建样条曲线工具(Creating a Spline Tool)](/Scripting/Editor/Creating-a-Spline-Tool.md)（本章没看懂）
 
-7. [IK入门(Getting Started with IK)](/Scripting/Editor/Getting-Started-with-IK.md)
+7. [IK入门(Getting Started with IK)](/Scripting/Editor/Getting-Started-with-IK.md)（待施工）
 
 [返回主页](/README.md)
