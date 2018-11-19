@@ -92,7 +92,91 @@ void Update()
 现在我们开始耍些小聪明。我们直接使用normal字段来设置最终段的方向。这个字段将会被设置为一个常量，或者是基于碰撞法线或一些其他的机理而动态改变的。正如我们所了解最终段的朝向，通过我们所知道的朝向和effector的长度，我们可以计算出effector的transform的目标位置。
 
 ## The IK Algorithm（IK算法）
+下面列出了完整的IK算法，以方便您的复制/粘贴。
 
+我们知道最后的关节方向，但也剩余三个的关节需要计算。让我们再耍一下小聪明，通过旋转pivot的transform，使其直接看向tipTarget。
+
+```
+var pivotDir = effectorTarget - pivot.position;
+pivot.rotation = Quaternion.LookRotation(pivotDir);
+```
+
+这样我们需要计算剩下两个旋转，幸运的是，这是一个众所周知的问题，我们可以使用三角函数（余弦定律）来解决这个问题。变量'a'，'b'和'c'是由变换链形成的三角形的长度。
+
+```
+var upperToTarget = (effectorTarget - upper.position);
+    var a = upperLength;
+    var b = lowerLength;
+    var c = upperToTarget.magnitude;
+```
+
+然后我们可以应用余弦定律来计算abc三角形的内角。
+
+var B = Mathf.Acos（（c * c + a * a - b * b）/（2 * c * a））* Mathf.Rad2Deg; var C = Mathf.Acos（（a * a + b * b - c * c）/（2 * a * b））* Mathf.Rad2Deg;
+
+注意，我们需要检查C是一个有效数字，因为有时我们会形成一个不可能用我们的关节方向来求解的三角形。如果C变量没问题，下一步是将角度转换为臂段的旋转方向。此外，虽然我们正使用局部旋转，实际上我们围绕全局向量（Vector3.right）旋转。（Also, as we are working with local rotations, we rotate around global vectors (Vector3.right).）~~这都啥子玩意~~
+
+```
+if (!float.IsNaN(C))
+{
+{
+    var upperRotation = Quaternion.AngleAxis((-B), Vector3.right);
+    upper.localRotation = upperRotation;
+    var lowerRotation = Quaternion.AngleAxis(180 - C, Vector3.right);
+    lower.localRotation = lowerRotation;
+}
+```
+
+最终，我们将最终臂段朝向了tipTarget的位置。
+
+```
+var effectorRotation = Quaternion.LookRotation(tipTarget - effector.position);
+effector.rotation = effectorRotation;
+```
+
+完整的方法
+```
+void Solve()
+{
+    var pivotDir = effectorTarget - pivot.position;
+    pivot.rotation = Quaternion.LookRotation(pivotDir);
+
+
+    var upperToTarget = (effectorTarget - upper.position);
+    var a = upperLength;
+    var b = lowerLength;
+    var c = upperToTarget.magnitude;
+
+
+    var B = Mathf.Acos((c * c + a * a - b * b) / (2 * c * a)) * Mathf.Rad2Deg;
+    var C = Mathf.Acos((a * a + b * b - c * c) / (2 * a * b)) * Mathf.Rad2Deg;
+
+
+    if (!float.IsNaN(C))
+    {
+        var upperRotation = Quaternion.AngleAxis((-B), Vector3.right);
+        upper.localRotation = upperRotation;
+        var lowerRotation = Quaternion.AngleAxis(180 - C, Vector3.right);
+        lower.localRotation = lowerRotation;
+    }
+    var effectorRotation = Quaternion.LookRotation(tipTarget - effector.position);
+    effector.rotation = effectorRotation;
+}
+```
+
+此时，IK解决方案已完成，应该可以在编辑器中使用。但目前调试或使用并不是很容易，因此我们需要添加一些编辑器控件，让我们测试系统是否按预期工作。
+
+## Scripting the Editor（脚本编辑）
+在Editor文件夹中创建一个新脚本，将其命名为SimpleIKSolverEditor.cs。编辑脚本并粘贴以下代码：
+```
+[CustomEditor(typeof(SimpleIKSolver))]
+public class SimpleIKSolverEditor : Editor
+{
+}
+```
+
+## Customising the Inspector（自定义检查器）
+首先，我们将修改检查器，以便在我们的求解器所需的任何变换丢失时发出警告。如果任何transform为null，我们将直接在检查器中显示错误消息。然后，我们绘制默认检查器，因为此组件的默认功能足够好。
 
 
 [返回上一级](/Scripting/Editor.md)
