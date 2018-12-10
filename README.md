@@ -33,4 +33,6 @@ Unity官方教程学习（[原教程链接](https://unity3d.com/cn/learn/tutoria
 - 用户界面（User Interface，UI）
     - [UI组件（UI Components）](/UI/UI-Components.md)
 - 物理系统（Physics）
+    - [3D 物理](/Physics/3D-Physics.md)
+    - [2D 物理](/Physics/2D-Physics.md)
 - 动画系统（Animation）
